@@ -1,0 +1,29 @@
+<!doctype html>
+/[if lt IE 7 ] <html class="ie ie6" lang="en">
+/[if IE 7 ] <html class="ie ie7" lang="en">
+/[if IE 8 ] <html class="ie ie8" lang="en">
+/ [if (gte IE 9)|!(IE)]><!
+%html{:lang => "en"}
+  / <![endif]
+  %head
+    %meta{:charset => "utf-8"}
+    %title= yield :title
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    /[if lt IE 9]
+    %script{:src => "http://html5shim.googlecode.com/svn/trunk/html5.js"}
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}
+    / = stylesheet_link_tag 'application'
+    = stylesheet_link_tag :all
+  %body
+    .container
+      .sixteen.columns
+        %h1#logo Rails3dojo
+        %hr
+      .twelve.columns= yield
+      .four.columns
+        %h3 Shortcuts
+        %ul
+          %li= link_to "Home", root_path
+          %li= link_to "Pages", pages_path
+          %li= link_to "New Page", new_page_path
