@@ -1,2 +1,13 @@
-%h1 Pages#new
-%p Find me in app/views/pages/new.html.haml
+%h1 New Page
+
+%div
+  %form
+    %label{ :for => "title" } Title
+    %input{ :type => "text", :name=>"title", :id => "title", :class => "full-width" }
+    %label{ :for => "body" } Body
+    %textarea{ :name => "body", :id => "body", :class => "full-width", :rows => 20 }
+    %label{ :for => "Name"} Name
+    %input{ :type => "text", :name => "name", :id => "name"}
+    %button Create
+    
+    
