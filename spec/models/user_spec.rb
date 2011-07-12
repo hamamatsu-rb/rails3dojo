@@ -13,7 +13,7 @@ describe User do
       user.should_not be_valid
     end
     
-    it "重複できない" do
+    it "重複不可" do
       user = create_user
       copy = build_user(:name => user.name)
       copy.should_not be_valid

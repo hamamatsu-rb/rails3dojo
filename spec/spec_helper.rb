@@ -80,3 +80,11 @@ end
 def build_user(params = {})
   Factory.build(:user, params)
 end
+
+def create_page(params = {})
+  Factory.create(:page, params)
+end
+
+def build_page(params = {})
+  Factory.build(:page, params)
+end
