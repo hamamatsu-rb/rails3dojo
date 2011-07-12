@@ -88,3 +88,11 @@ end
 def build_page(params = {})
   Factory.build(:page, params)
 end
+
+def create_comment(params = {})
+  Factory.create(:comment, params)
+end
+
+def build_comment(params = {})
+  Factory.build(:comment, params)
+end

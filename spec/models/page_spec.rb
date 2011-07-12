@@ -42,4 +42,18 @@ describe Page do
       end.should change(Page, :count).by(1)
     end
   end
+  
+  describe "#comments" do
+    it "複数持てる" do
+      page = create_page
+      page.comments.should be_empty
+    end
+    
+    it "追加できる" do
+      page = create_page
+      lambda do
+        page.comments.create(:body => "こんにちは", :user => page.user)
+      end.should change(Comment, :count).by(1)      
+    end
+  end
 end
