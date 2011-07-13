@@ -9,4 +9,13 @@ class Page < ActiveRecord::Base
                     :uniqueness => true
                     
   scope :recent, limit(10).order("created_at DESC")
+  
+  def save_by_user(updater)
+    if self.save
+      self.histories.create(:user => updater)
+      true
+    else
+      false
+    end
+  end
 end

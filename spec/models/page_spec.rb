@@ -43,6 +43,25 @@ describe Page do
     end
   end
   
+  describe "#recent" do
+    before do
+      @oldest = create_page
+      9.times do
+        create_page(:user => @oldest.user)
+      end
+      @newest = create_page(:user => @oldest.user)
+    end
+    
+    it "最新の10件" do
+      Page.recent.all.size.should eql(10)
+    end
+    
+    it "作成日の降順でソート" do
+      Page.recent.first.should eql(@newest)
+      Page.recent.should_not be_include(@oldest)
+    end
+  end
+  
   describe "#comments" do
     before do
       @page = create_page
@@ -50,7 +69,7 @@ describe Page do
       @newer = @page.comments.create(:body => "Second", :user => create_user(:name => "tom"))
     end
     
-    it "複数持つ" do
+    it "ページへのコメント" do
       @page.comments.should be_many
     end
     
@@ -72,7 +91,7 @@ describe Page do
       @newer = @page.histories.create(:user => create_user(:name => "tom"))
     end
     
-    it "複数持つ" do
+    it "ページの更新履歴" do
       @page.histories.should be_many
     end
     
@@ -87,22 +106,23 @@ describe Page do
     end
   end
   
-  describe "#recent" do
+  describe "#save_by_user" do
     before do
-      @oldest = create_page
-      9.times do
-        create_page(:user => @oldest.user)
-      end
-      @newest = create_page(:user => @oldest.user)
+      @page = create_page
+      @page.title = "New Title"
+      @updater = create_user(:name => "tom")
     end
     
-    it "最新の10件" do
-      Page.recent.all.size.should eql(10)
+    it "保存の成否を返す" do
+      @page.save_by_user(@updater).should be_true
+      @page.title = ""
+      @page.save_by_user(@updater).should_not be_true
     end
     
-    it "作成日の降順でソート" do
-      Page.recent.first.should eql(@newest)
-      Page.recent.should_not be_include(@oldest)
+    it "Historyを1つ追加" do
+      lambda do
+        @page.save_by_user(@updater)
+      end.should change(History, :count).by(1)
     end
   end
 end
