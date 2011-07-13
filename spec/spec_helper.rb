@@ -96,3 +96,11 @@ end
 def build_comment(params = {})
   Factory.build(:comment, params)
 end
+
+def create_history(params = {})
+  Factory.create(:history, params)
+end
+
+def build_history(params = {})
+  Factory.build(:history, params)
+end
