@@ -104,3 +104,18 @@ end
 def build_history(params = {})
   Factory.build(:history, params)
 end
+
+def login(user_name = nil)
+  user = user_name ? create_user(:name => user_name) : create_user
+  session[:user_id] = user.id
+end
+
+def logout
+  session.delete(:user_id)
+end
+
+def filtered_by_login_required
+  url = request.env['HTTP_REFERER'] || root_url
+  response.should redirect_to(url)
+  flash[:error].should be
+end
