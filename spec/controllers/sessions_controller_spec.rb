@@ -33,12 +33,12 @@ describe SessionsController do
         post :create, :user_name => "", :before_path => root_path
       end
       
-      it "リダイレクトしない" do
-        response.should be_success        
+      it "ログイン前のページにリダイレクトする" do
+        response.should redirect_to(root_path)
       end
       
-      it "レスポンスボディはエラーメッセージ" do
-        response.body.should_not be_blank
+      it "エラーメッセージを表示する" do
+        flash[:error].should be
       end
     end
     

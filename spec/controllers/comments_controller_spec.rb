@@ -53,7 +53,7 @@ describe CommentsController do
     end
   end
 
-  describe "GET 'destroy'" do
+  describe "#destroy" do
     it "DELETE page_comment_path(page_id, id) にマッチ" do
       { :delete => page_comment_path("1", "2") }.should route_to("comments#destroy", :page_id => "1", :id => "2")
     end

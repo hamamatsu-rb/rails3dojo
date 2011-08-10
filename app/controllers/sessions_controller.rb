@@ -4,10 +4,11 @@ class SessionsController < ApplicationController
     
     if user.valid?
       session[:user_id] = user.id
-      redirect_to params[:before_path]
     else
-      render :text => user.errors.full_messages.first
+      flash[:error] = user.errors.full_messages.first
     end
+    
+    redirect_to params[:before_path]
   end
 
   def destroy
