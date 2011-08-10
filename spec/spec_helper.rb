@@ -111,6 +111,7 @@ def login(user_name = nil)
 end
 
 def logout
+  controller.instance_variable_set("@current_user", nil)
   session.delete(:user_id)
 end
 
