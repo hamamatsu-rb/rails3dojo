@@ -98,7 +98,7 @@ describe PagesController do
     end
   end
 
-  describe "#created" do
+  describe "#create" do
     it "POST pages_pathにマッチ" do
       { :post => pages_path }.should route_to("pages#create")
     end

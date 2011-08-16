@@ -9,7 +9,7 @@ class PagesController < ApplicationController
     @page = Page.find_by_title(params[:title])
     
     unless @page
-      flash.now[:notice] = "Page could not create."
+      flash.now[:notice] = "Page was not created yet."
       @page = Page.new(:title => params[:title])
       render :action => :new
     end
