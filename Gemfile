@@ -36,6 +36,10 @@ gem "sass"
 gem "jquery-rails"
 gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
 
+gem "redcarpet"
+gem "albino"
+gem "nokogiri"
+
 group :test do
   gem "factory_girl_rails"
   gem "spork", ">= 0.9.0.rc2"

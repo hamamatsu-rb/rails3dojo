@@ -2,7 +2,7 @@
 
 %h1= yield :title
 
-= @page.body
+= markdown(@page.body)
 
 %hr{:class => "half-bottom"}
 
@@ -12,8 +12,8 @@
     %br
     = link_to "Edit", edit_page_path(@page)
     |
-    = link_to "Delete",
-              page_path(@page, :test => "foo"),
+    = link_to "Delete", 
+              page_path(@page),
               :method => :delete, :confirm => "Are you sure?"
               
 
