@@ -8,8 +8,48 @@
 
 %p
   = page_update_info_tag(@page)
-  %br
-  = link_to "Edit", edit_page_path(@page)
-  |
-  = link_to "Delete", page_path(@page),
-                      :method => :delete, :confirm => "Are you sure?"
+  - if current_user
+    %br
+    = link_to "Edit", edit_page_path(@page)
+    |
+    = link_to "Delete",
+              page_path(@page, :test => "foo"),
+              :method => :delete, :confirm => "Are you sure?"
+              
+
+%ul{:class => "tabs"}
+  %li= link_to "Comments", "#comments", :class => "active"
+  %li= link_to "History", "#history"
+
+%ul{:class => "tabs-content"}
+  %li{:id => "commentsTab", :class => "active"}
+    %ul
+      - @page.comments.each do |comment|
+        %li
+          By
+          %strong= comment.user.name
+          on
+          %strong= comment.created_at.to_s(:short)
+          - if current_user
+            = link_to "Delete", page_comment_path(@page, comment), :method => :delete, :confirm => "Are you sure?"
+        %p= comment.body
+
+      - if current_user
+        %li
+        = form_for :comment, :url => page_comments_path(@page) do |f|
+          %h5 New comment
+          = f.text_area :body, :class => "full-width", :rows => 8
+          = f.submit
+  %li{:id => "historyTab"}
+    %ul
+      - @page.histories.each do |history|
+        %li
+          Updated by
+          %strong= history.user.name
+          on
+          %strong= history.created_at.to_s(:short)
+      %li
+        Created by
+        %strong= @page.user.name
+        on
+        %strong= @page.created_at.to_s(:short)
