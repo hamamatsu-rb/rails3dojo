@@ -9,6 +9,7 @@ class PagesController < ApplicationController
     @page = Page.find_by_title(params[:title])
     
     unless @page
+      login_required and return unless current_user
       flash.now[:notice] = "Page was not created yet."
       @page = Page.new(:title => params[:title])
       render :action => :new

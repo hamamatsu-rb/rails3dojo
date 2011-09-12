@@ -68,8 +68,8 @@ describe SessionsController do
       delete :destroy, :id => session[:user_id], :before_path => pages_path
     end
     
-    it "ログアウト前のページにリダイレクトする" do
-      response.should redirect_to(pages_path)
+    it "トップページにリダイレクトする" do
+      response.should redirect_to(root_path)
     end
     
     it "セッションのuser_idがクリアされる" do

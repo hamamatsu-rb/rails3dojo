@@ -13,8 +13,7 @@ class ApplicationController < ActionController::Base
   def login_required
     unless current_user
       flash[:error] = "This action is login required."
-      url = request.env['HTTP_REFERER'] || root_url
-      redirect_to url
+      redirect_to root_url
     end
   end
 end

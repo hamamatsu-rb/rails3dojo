@@ -44,20 +44,30 @@ describe PagesController do
     end
     
     context "Pageが存在しない場合" do
-      before do
-        get :show, :title => "New Page"
+      context "ログインしていない場合" do
+        it "トップページにリダイレクトする" do
+          get :show, :title => "New Page"
+          response.should redirect_to(root_path)
+        end
       end
       
-      it "テンプレートnewを表示する" do
-        response.should render_template(:new)
-      end
+      context "ログイン済みの場合" do
+        before do
+          login
+          get :show, :title => "New Page"
+        end
       
-      it "タイトルは入力済み" do
-        assigns(:page).title.should eql("New Page")
-      end
+        it "テンプレートnewを表示する" do
+          response.should render_template(:new)
+        end
       
-      it "未作成Pageメッセージを表示する" do
-        flash[:notice].should be
+        it "タイトルは入力済み" do
+          assigns(:page).title.should eql("New Page")
+        end
+      
+        it "未作成Pageメッセージを表示する" do
+          flash[:notice].should be
+        end        
       end
     end
   end
@@ -69,12 +79,11 @@ describe PagesController do
     
     context "ログインしていない場合" do
       before do
-        request.env['HTTP_REFERER'] = pages_url
         get :new
       end
       
-      it "元いたページにリダイレクトする" do
-        response.should redirect_to(pages_url)
+      it "トップページにリダイレクトする" do
+        response.should redirect_to(root_path)
       end
       
       it "ログイン要求メッセージを表示する" do
