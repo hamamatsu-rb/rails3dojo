@@ -1,37 +1,15 @@
-%h1 Home
+- content_for :title, "Welcome"
 
-%p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet suscipit ante, quis interdum odio ornare at. Etiam dignissim interdum tempor. Mauris at est ac libero tempus molestie quis at quam. Nullam sit amet eros metus, sit amet feugiat turpis. <a href="#">Ut pulvinar porttitor ipsum, sit amet gravida mi pulvinar non</a>. 
-
-%p <strong>Pellentesque vitae lacus</strong> ac orci lobortis consequat. Vivamus facilisis dapibus tortor quis elementum. Ut ac pretium tortor. Etiam in dui dui, eget tempus tortor. Etiam tempus eleifend neque, sed suscipit massa condimentum ac. Sed viverra sagittis lacus et ultrices. Donec tincidunt libero mauris, sed pretium ligula. Cras purus lectus, iaculis non tempor eu, imperdiet ut ligula. Praesent convallis felis justo, ac molestie orci. 
-
-%hr{:class => "half-bottom"}
+%h1= yield :title
 
 %p
-  Last updated by <strong>mackato</strong> on <strong>June 3, 2011</strong>
+  Rails3dojo is the simple wiki application built with Ruby on Rails.
   %br
-  = link_to "Edit", "#"
-  |
-  = link_to "Delete", "#"
+  It's made in
+  = link_to "Hamamatsu.rb", "http://hamamatsu-rb.github.com/"
 
-%ul{:class => "tabs"}
-  %li= link_to "Comments", "#comments", :class => "active"
-  %li= link_to "History", "#history"
+%p
+  At first, please create your 
+  = link_to "Home page", wiki_page_path("Home")
 
-%ul{:class => "tabs-content"}
-  %li{:id => "commentsTab", :class => "active"}
-    %ul
-      %li By <strong>mackato</strong> on <strong>June 1, 2011</strong>
-      %p Vestibulum risus quam, porta vitae auctor vel, semper ut ipsum. Donec sit amet velit odio. Cras sagittis elit id enim faucibus ut viverra metus ullamcorper.
-      %li By <strong>suchi</strong> on <strong>June 3, 2011</strong>
-      %p Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras quis arcu semper ligula elementum luctus. Suspendisse potenti.
-      %li
-      %form
-        %h5 New comment
-        %textarea{:class => "full-width"}
-        %label{:for => "message"} Name:
-        %input{:type => "text", :id => "message"}
-        %button Submit
-  %li{:id => "historyTab"}
-    %ul
-      %li Updated by <strong>mackato</strong> on <strong>June 3, 2011</strong>
-      %li Created by <strong>suchi</strong> on <strong>June 1, 2011</strong>
+

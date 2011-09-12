@@ -4,3 +4,7 @@
   = f.label :body
   = f.text_area :body, :class => "full-width", :rows => 20
   = f.submit button
+  - if method == :put and not @page.title.blank?
+    or
+    = link_to "Back", wiki_page_path(@page.title)
+    

@@ -42,4 +42,10 @@
           %li= link_to "Pages", pages_path
           %li= link_to "New Page", new_page_path
 
+    #footer.container
+      %hr{:class => "half-bottom"}
+      %p
+        &copy; 2010
+        = link_to "Hamamatsu.rb", "http://hamamatsu-rb.github.com/"
+      
     = javascript_include_tag :all

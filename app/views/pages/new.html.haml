@@ -1,4 +1,6 @@
-%h1 New Page
+- content_for :title, "New Page"
+
+%h1= yield :title
 
 %div
   = render(:partial => 'form',
