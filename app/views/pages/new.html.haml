@@ -1,9 +1,9 @@
 %h1 New Page
 
 %div
-  %form
-    %label{ :for => "title" } Title
-    %input{ :type => "text", :name=>"title", :id => "title", :class => "full-width" }
-    %label{ :for => "body" } Body
-    %textarea{ :name => "body", :id => "body", :class => "full-width", :rows => 20 }
-    %button Create
+  = form_for @page do |f|
+    = f.label :title
+    = f.text_field :title, :class => "full-width"
+    = f.label :body
+    = f.text_area :body, :class => "full-width", :rows => 20
+    = f.submit "Create"
