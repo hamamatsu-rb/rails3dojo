@@ -15,16 +15,25 @@
     %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}
     = stylesheet_link_tag :all
   %body
+    = flash_tag
     #header.container
       .twelve.columns
         %h1#logo= link_to "Rails3dojo", root_path
       .four.columns
-        %span#user_name mackato
-        |
-        = link_to "Logout", "#"
+        - if current_user
+          %span#user_name= current_user.name
+          |
+          = link_to "Logout", session_path(session[:user_id], :before_path => request.path), :method => :delete
+        - else
+          = form_tag sessions_path, :id => "login_form" do
+            %label{:for => "user_name"} Name
+            = text_field_tag :user_name
+            = hidden_field_tag :before_path, request.path
+            = submit_tag "Login"
       .sixteen.columns
         %hr
-      .twelve.columns= yield
+      .twelve.columns
+        = yield
       .four.columns
         %h3 Shortcuts
         %ul
