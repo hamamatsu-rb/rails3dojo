@@ -3,3 +3,13 @@
 %h1= @page.title
 
 = @page.body
+
+%hr{:class => "half-bottom"}
+
+%p
+  = page_update_info_tag(@page)
+  %br
+  = link_to "Edit", edit_page_path(@page)
+  |
+  = link_to "Delete", page_path(@page),
+                      :method => :delete, :confirm => "Are you sure?"

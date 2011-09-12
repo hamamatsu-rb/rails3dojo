@@ -1,0 +1,6 @@
+= form_for @page, :method => method do |f|
+  = f.label :title
+  = f.text_field :title, :class => "full-width"
+  = f.label :body
+  = f.text_area :body, :class => "full-width", :rows => 20
+  = f.submit button

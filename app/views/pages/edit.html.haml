@@ -1,1 +1,5 @@
-%1 Pages#edit
+%h1 Edit page
+
+%div
+  = render(:partial => 'form',
+           :locals => { :method => :put, :button => "Update" })
