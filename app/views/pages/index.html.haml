@@ -1,4 +1,6 @@
-%h1 Pages
+- content_for :title, "Pages"
+
+%h1= yield :title
 
 - @pages.each do |page|
   %h4= link_to page.title, wiki_page_path(page.title)
